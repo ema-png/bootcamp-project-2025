@@ -166,9 +166,8 @@ input[type="submit"] {
 
 /* CSS for Blog */
 
-.blog-images {
-    align-items: center;
-    justify-content: space-between;
+#blog-entry {
+  align-items: center;
 }
 
 /* CSS for Portfolio */
