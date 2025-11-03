@@ -6,7 +6,7 @@ export default function Navbar() {
   return (
     <header className={style.navbar}>
       <h1 className={style.logo}> 
-        Emma's Website ｡ ₊°༺❤︎༻°₊ ｡ </h1>
+        Emma&apos;s Website ｡ ₊°༺❤︎༻°₊ ｡ </h1>
       <nav className={style.navlist}>
         <Link href="/">Home</Link>
         <Link href="/blog">Blog</Link>

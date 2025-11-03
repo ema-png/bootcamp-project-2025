@@ -1,1 +1,70 @@
 @import "tailwindcss";
+
+html {
+  height: 100%;
+}
+
+main {
+  padding: 0 20px 40px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  background-color: rgb(246, 252, 255);
+  position: relative;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+.pagetitle {
+    margin-top: 30px;
+    font-size: 50;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(96, 170, 208);
+}
+
+.sub_title{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/*home page styling*/
+
+.about{
+    margin: 20px;
+    padding: 20px;
+    background-color: rgb(255, 217, 223);
+    
+    border-width: 25px;
+    border-radius: 25px;
+    border-style: solid;
+    border-color: pink;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 800px;
+}
+
+.abouttext {
+    margin-left : 20px;
+    font-size: 20;
+    flex: 1;
+    max-width: 50%;
+    color: rgb(225, 128, 144)
+}
+
+.aboutimage {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.aboutimage img {
+    width: 100%
+}
