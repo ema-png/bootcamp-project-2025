@@ -1,0 +1,12 @@
+.vertical_line {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    
+    border-left: 10px dashed rgb(96, 170, 208);
+    border-right: 10px dashed rgb(96, 170, 208);
+    width : auto;
+    z-index: 9;
+    right: 70px;
+    left: 70px;
+}   

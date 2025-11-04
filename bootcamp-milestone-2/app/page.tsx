@@ -3,8 +3,6 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <html>
-      <body>
           <main>
               <h1 className="pagetitle">
                   ₊✩‧₊˚Emma&apos;s Website˚₊✩‧₊
@@ -25,7 +23,5 @@ export default function Home() {
                   </div>
               </div>
           </main>
-      </body>
-  </html>
   );
 }
