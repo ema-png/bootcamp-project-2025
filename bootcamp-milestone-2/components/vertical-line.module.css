@@ -6,7 +6,20 @@
     border-left: 10px dashed rgb(96, 170, 208);
     border-right: 10px dashed rgb(96, 170, 208);
     width : auto;
-    z-index: 9;
+    z-index: -1;
     right: 70px;
     left: 70px;
-}   
+} 
+
+.vertical_line2{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    
+    border-left: 5px dashed rgb(96, 180, 208);
+    border-right: 5px dashed rgb(96, 180, 208);
+    width : auto;
+    z-index: -1;
+    right: 70px;
+    left: 70px;
+}

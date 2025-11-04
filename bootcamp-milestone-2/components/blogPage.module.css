@@ -1,5 +1,21 @@
-.blogabout{
-    margin: 50px;
+.blogtitle {
+    margin-top: 30px;
+    font-size : 70px;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    display: flex;
+    justify-content: center;
+}
+
+.blogdate {
+    font-size: 25px;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+}
+
+.blogentry{
+    margin: 50px auto;
     padding: 20px;
     background-color: rgb(255, 229, 250);
     
@@ -12,14 +28,6 @@
     align-items: center;
     justify-content: center;
     max-width: 800px;
-    z-index: 11;
-}
-
-.blogtext {
-    margin-left : 20px;
-    flex: 1;
-    max-width: 50%;
-    color: rgb(238, 145, 203);
 }
 
 .blogimage {
@@ -42,19 +50,11 @@
     transition: transform 0.4s ease;
 }
 
-
-.blogtitle {
-    font-size : 40px;
-    font-weight: bold;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
 .blogdescription {
     font-size: 20px;
     font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
-.blogdate {
-    font-size: 15px;
-    font-family: 'Courier New', Courier, monospace
+    margin-left : 20px;
+    flex: 1;
+    max-width: 50%;
+    color: rgb(238, 145, 203);
 }

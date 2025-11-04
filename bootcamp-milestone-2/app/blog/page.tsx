@@ -1,6 +1,6 @@
 import React from "react";
 import BlogPreview from '@/components/blogPreview';
-import blogs from "../blogData"
+import reversed_blogs from "../blogData"
 
 
 
@@ -14,14 +14,15 @@ export default function Blog() {
                     read for life updates!
                 </p>
                 <div className="blogentry">
-                    {blogs.map(blog => 
+                    {reversed_blogs.map(blog => 
                         <BlogPreview
                             title = {blog.title}
                             date = {blog.date}
                             description = {blog.description}
                             image = {blog.image}
                             imageAlt = {blog.imageAlt}
-                            key = {blog.slug}
+                            slug = {blog.slug}
+                            key = {blog.key}
                         />
 		            )}
                 </div>

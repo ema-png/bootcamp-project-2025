@@ -22,6 +22,9 @@ export default function Home() {
                       <p>I&apos;m currently a freshman at Cal Poly Slo studying Computer Science. I&apos;m originally from Pleasanton, California. Besides school, I like playing video games, eating food, solving word puzzles, and downloading silly dog pictures.</p>
                   </div>
               </div>
+              <div className = "heart">
+                    ˚ʚ♡ɞ˚
+              </div>
           </main>
   );
 }

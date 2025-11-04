@@ -1,43 +1,38 @@
-export interface Blog {
+export interface BlogPages {
     title: string;
     date: string;
     description: string;
     image: string;
     imageAlt: string;
-    slug: string;
     key: number;
 }
 
-const blogs : Blog[] = [
+const blogPages : BlogPages[] = [
     {
         title: "Day 1",
         date: "WEDNESDAY 10/15/25",
-        description: "Today, I made a blog entry...",
+        description: "Today I went to class and then I ate lots of food. This is a normal schedule for me.",
         image: "/dog2.jpeg",
         imageAlt: "cute dog",
-        slug: "/day-1",
         key: 1,
     },
     {
         title: "Day 2",
         date: "THURSDAY 10/16/25",
-        description: "Today, I made another blog entry!",
+        description: "Today I went to class again and I still ate lots of food. This is a normal schedule for me.",
         image: "/dog3.jpeg",
         imageAlt: "cuter dog",
-        slug: "/day-2",
         key: 2,
     },
     {
         title: "Day 3",
         date: "MONDAY 11/3/25",
-        description: "New day, new blog entry...",
+        description: "Today I worked hard on my studies and had fun with my friends.",
         image: "/dog4.jpeg",
         imageAlt: "even cuter dog",
-        slug: "/day-3",
         key: 3,
     },
+ 
 ]
 
-const reversed_blogs = [...blogs].reverse()
-
-export default reversed_blogs;
+export default blogPages;
