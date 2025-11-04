@@ -1,0 +1,53 @@
+.projectimage {
+    overflow: hidden;
+    align-items: center;
+    position: relative;
+    
+    border: 5px solid;
+    border-radius: 20px;
+    color : rgb(255, 179, 221);
+   
+    transition: transform 0.4s ease;
+}
+
+.projectimage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.projectimage:hover {
+    transform: scale(1.05);
+    transition: transform 0.4s ease;
+}
+
+.projectname{
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    display: flex;
+
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+}
+
+.projectdescription{
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    display: flex;
+
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.projectLink{
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    display: flex;
+    margin: 15px;
+
+    font-family: 'Courier New', Courier, monospace;
+    text-decoration: underline;
+    color: rgb(96, 115, 255)
+}
