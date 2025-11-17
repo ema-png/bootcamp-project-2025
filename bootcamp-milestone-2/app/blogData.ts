@@ -1,14 +1,15 @@
 export interface Blog {
     title: string;
-    date: string;
+    date: Date;
     description: string;
     image: string;
     imageAlt: string;
     slug: string;
-    key: number;
+    comments : string[];
+    _id: string;
 }
 
-const blogs : Blog[] = [
+/*const blogs : Blog[] = [
     {
         title: "Day 1",
         date: "WEDNESDAY 10/15/25",
@@ -40,4 +41,4 @@ const blogs : Blog[] = [
 
 const reversed_blogs = [...blogs].reverse()
 
-export default reversed_blogs;
+export default reversed_blogs;*/

@@ -1,11 +1,33 @@
-import React from "react";
 import BlogPreview from '@/components/blogPreview';
-import reversed_blogs from "../blogData"
+import connectDB from "@/database/db";
+import BlogModel from "@/database/blogSchema";
+
+async function getBlogs(){
+	await connectDB() // function from db.ts before
+
+	try {
+			// query for all blogs and sort by date
+	    const blogs = await BlogModel.find().sort({ date: -1 }).orFail()
+			// send a response as the blogs as the message
+	    return blogs
+	} catch (err) {
+	    return null
+	}
+}
 
 
+export default async function BlogPage() {
+    const blogs = await getBlogs(); // fetch from MongoDB
 
-export default function Blog() {
-  return (
+    if (!blogs) {
+        return (
+        <main>
+            <h1>loading error</h1>
+        </main>
+        );
+    }
+  
+    return (
             <main>
                 <h1 className="pagetitle">
                     ₊✩‧₊˚Emma&apos;s Blog˚₊✩‧₊
@@ -14,18 +36,20 @@ export default function Blog() {
                     read for life updates!
                 </p>
                 <div className="blogentry">
-                    {reversed_blogs.map(blog => 
+                    {blogs.map((blog) => 
                         <BlogPreview
+                            key = {String(blog._id)}
                             title = {blog.title}
-                            date = {blog.date}
+                            date = {new Date(blog.date).toLocaleDateString()}
                             description = {blog.description}
                             image = {blog.image}
                             imageAlt = {blog.imageAlt}
                             slug = {blog.slug}
-                            key = {blog.key}
+                            comments={blog.comments}
                         />
 		            )}
                 </div>
             </main>
   );
 }
+
