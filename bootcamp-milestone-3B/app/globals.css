@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+html {
+  height: 100%;
+}
+
+main {
+  padding: 0 20px 40px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  background-color: rgb(246, 252, 255);
+  position: relative;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.pagetitle {
+    margin-top: 30px;
+    font-size: 50px;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(96, 170, 208);
+}
+
+
+.sub_title{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/*home page styling*/
+
+.about{
+    margin: 20px;
+    padding: 20px;
+    background-color: rgb(255, 229, 250);
+    
+    border-width: 25px;
+    border-radius: 25px;
+    border-style: solid;
+    border-color: rgb(255, 187, 226);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 800px;
+}
+
+.abouttext {
+    margin-left : 20px;
+    font-size: 20;
+    flex: 1;
+    max-width: 50%;
+    color: rgb(238, 145, 203);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.aboutimage {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+}
+
+.aboutimage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.aboutimage:hover img {
+  transform: scale(1.2);
+}
+
+.heart {
+  margin: 100px;
+  transform:scale(6);
+  color: rgb(255, 195, 243);
+  transition-duration: 0.5s;
+  transition-timing-function: ease ;
+}
+
+.heart:hover {
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+  transform: scale(7);
+  color: rgb(255, 114, 227);
+  
+}
+
+/*resume page styling*/
+
+.resume {
+  margin-bottom: 40px;
+  padding: 20px;
+  border: 10px solid rgb(183, 223, 255);
+  border-radius: 15px;
+  
+
+}
+
+.section-title {
+    color : rgb(39, 81, 101);
+    background-color : rgb(226, 226, 226);
+    font-size: 25px;
+    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
+}
+
+/* CSS for Contact Form */
+
+.contact-form {
+    margin : 30px;
+    padding: 20px;
+    border-radius: 20px;
+    border: 5px solid rgb(255, 195, 235);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-right: 0px;
+  border: 1px solid #ffc5e3;
+  border-radius: 4px;
+  font-size: 16px;
+  resize: none;
+  font-family:'Times New Roman', Times, serif;
+}
+
+input[type="submit"] {
+    font-family:'Courier New', Courier, monospace
+}
