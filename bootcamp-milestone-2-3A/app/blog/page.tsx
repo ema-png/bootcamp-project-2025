@@ -1,6 +1,6 @@
-import BlogPreview from '@/components/blogPreview';
 import connectDB from "@/database/db";
 import BlogModel from "@/database/blogSchema";
+import BlogPreview from '@/components/blogPreview';
 
 async function getBlogs(){
 	await connectDB() // function from db.ts before
@@ -11,6 +11,7 @@ async function getBlogs(){
 			// send a response as the blogs as the message
 	    return blogs
 	} catch (err) {
+        console.error(err)
 	    return null
 	}
 }
@@ -39,6 +40,7 @@ export default async function BlogPage() {
                     {blogs.map((blog) => 
                         <BlogPreview
                             key = {String(blog._id)}
+                            _id = {String(blog._id)}
                             title = {blog.title}
                             date = {new Date(blog.date).toLocaleDateString()}
                             description = {blog.description}
