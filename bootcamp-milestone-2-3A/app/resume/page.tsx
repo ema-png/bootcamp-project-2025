@@ -25,12 +25,12 @@ export default function Resume(){
                 Coursework
             </h2>
                <div>
-                {entries.slice(1,4).map(entry => 
+                {entries.slice(1,4).map((entry, index) => 
                     <ResumeEntry
                         entry_title = {entry.entry_title}
                         entry_info = {entry.entry_info}
                         entry_description = {entry.entry_description}
-                        key = {1}
+                        key = {index}
                     />
 		        )}
             </div>
@@ -38,12 +38,12 @@ export default function Resume(){
                 Skills
             </h2>
                <div>
-                {entries.slice(4,10).map(entry => 
+                {entries.slice(4,10).map((entry, index) => 
                     <ResumeEntry
                         entry_title = {entry.entry_title}
                         entry_info = {entry.entry_info}
                         entry_description = {entry.entry_description}
-                        key = {1}
+                        key = {index}
                     />
 		        )}
             </div>
@@ -51,12 +51,12 @@ export default function Resume(){
                 Work Experience
             </h2>
              <div>
-                {entries.slice(10,13).map(entry => 
+                {entries.slice(10,13).map((entry, index) => 
                     <ResumeEntry
                         entry_title = {entry.entry_title}
                         entry_info = {entry.entry_info}
                         entry_description = {entry.entry_description}
-                        key = {1}
+                        key = {index}
                     />
 		        )}
             </div>
@@ -64,12 +64,12 @@ export default function Resume(){
                 Project Experience
             </h2>
                <div>
-                {entries.slice(13,14).map(entry => 
+                {entries.slice(13,14).map((entry, index) => 
                     <ResumeEntry
                         entry_title = {entry.entry_title}
                         entry_info = {entry.entry_info}
                         entry_description = {entry.entry_description}
-                        key = {1}
+                        key = {index}
                     />
 		        )}
             </div>

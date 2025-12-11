@@ -4,7 +4,8 @@ import Image from "next/image";
 import { Blog } from "../app/blogData"
 import Link from "next/link";
 
-export default function BlogPreview(props: Blog) {
+export default function BlogPreview(props : Blog) {
+
   return (
     <div className={style.div}>
       <div className = {style.blogabout}>

@@ -32,6 +32,15 @@ const blogPages : BlogPages[] = [
         imageAlt: "even cuter dog",
         key: 3,
     },
+    {
+        title: "Day 4",
+        date: "WEDNESDAY 12/4/25",
+        description: "Today I am finishing hack for impact bootcamp...",
+        image: "/dog5.jpeg",
+        imageAlt: "even even cuter dog",
+        key: 4,
+    },
+ 
  
 ]
 

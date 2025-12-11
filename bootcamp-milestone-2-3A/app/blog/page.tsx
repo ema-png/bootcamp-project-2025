@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import connectDB from "@/database/db";
 import BlogModel from "@/database/blogSchema";
 import BlogPreview from '@/components/blogPreview';
@@ -20,14 +21,15 @@ async function getBlogs(){
 export default async function BlogPage() {
     const blogs = await getBlogs(); // fetch from MongoDB
 
+
     if (!blogs) {
         return (
         <main>
-            <h1>loading error</h1>
+            <h1 className='pagetitle'>Loading Error</h1>
         </main>
         );
     }
-  
+    
     return (
             <main>
                 <h1 className="pagetitle">
@@ -36,6 +38,7 @@ export default async function BlogPage() {
                 <p className="sub_title">
                     read for life updates!
                 </p>
+                <Suspense fallback={<Loading />}>
                 <div className="blogentry">
                     {blogs.map((blog) => 
                         <BlogPreview
@@ -51,7 +54,13 @@ export default async function BlogPage() {
                         />
 		            )}
                 </div>
+                </Suspense>
             </main>
   );
+}
+
+function Loading() {
+    return <h1 className = "pagetitle"> Loading...! </h1>;
+    
 }
 
