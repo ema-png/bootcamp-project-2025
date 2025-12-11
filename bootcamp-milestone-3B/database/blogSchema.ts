@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 // typescript type (can also be an interface)
-type BlogModel = {
+export type BlogModel = {
 	title: string;
 	slug: string; 
 	date: Date;
@@ -9,8 +9,14 @@ type BlogModel = {
 	content: string; // text content for individual blog page
 	image: string; // url for string in public
 	imageAlt: string; // alt for image
-	// comments: IComment[]; // array for comments
+	comments: IComment[]; // array for comments
 };
+
+export type IComment = {
+		user: string;
+		comment: string;
+		time: Date;
+}
 
 
 // mongoose schema 
@@ -22,6 +28,11 @@ const blogSchema = new Schema<BlogModel>({
     image: { type: String, required: true },
     imageAlt: { type: String, required: true },
     content: { type: String, required: true },
+    comments : [{
+        user : { type: String, required: true },
+        comment : { type: String, required: true },
+        time : { type: Date, required: true }
+    }]
 })
 
 // defining the collection and model

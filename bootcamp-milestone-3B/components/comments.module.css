@@ -1,0 +1,31 @@
+.commentboxes {
+    margin-bottom: 5px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: baseline;
+}
+
+.username {
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(96, 170, 208);
+    font-size: larger;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.time{
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(152, 152, 152);
+    font-style: italic;
+
+}
+
+.commenttext{
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(46, 46, 46);
+    padding-left: 25px;
+}

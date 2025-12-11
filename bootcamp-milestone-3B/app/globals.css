@@ -94,6 +94,31 @@ body {
   
 }
 
+/*comment box styling*/
+
+.commentbox{
+    margin: 30px;
+    padding: 30px;
+    width: 800px;
+    
+    border-width: 10px;
+    border-radius: 25px;
+    border-style: dashed;
+    border-color: rgb(255, 187, 226);
+
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    max-width: 800px;
+}
+
+.commenttitle {
+    font-size: 50px;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(96, 170, 208);
+}
+
 /*resume page styling*/
 
 .resume {
