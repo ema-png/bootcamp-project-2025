@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import { IComment } from "./blogSchema";
 
 // typescript type (can also be an interface)
 type PortfolioModel = {
@@ -9,6 +10,7 @@ type PortfolioModel = {
 	content: string; // text content for individual blog page
 	image: string; // url for string in public
 	imageAlt: string; // alt for image
+  comments: IComment[]; // array for comments
 };
 
 // mongoose schema 
@@ -19,6 +21,11 @@ const portfolioSchema = new Schema<PortfolioModel>({
     description: { type: String, required: true },
     image: { type: String, required: true },
     imageAlt: { type: String, required: true },
+    comments : [{
+        user : { type: String, required: true },
+        comment : { type: String, required: true },
+        time : { type: Date, required: true }
+    }]
 })
 
 // defining the collection and model

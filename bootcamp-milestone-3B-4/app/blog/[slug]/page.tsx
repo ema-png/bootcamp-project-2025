@@ -1,5 +1,6 @@
 import BlogPageComponent from "@/components/blogPage"
 import Comment from "@/components/comments";
+import CommentForm from "@/components/commentForm";
 import type { IComment } from "@/database/blogSchema";
 
 type Props = {
@@ -43,6 +44,8 @@ export default async function BlogPage(props: Props) {
         description={blog.content}
       />
 
+      <CommentForm slug = {slug}/>
+
       {blog.comments && blog.comments.length > 0 && (
         <section className = "commentbox">
           <h3 className = "commenttitle">Comments</h3>
@@ -51,6 +54,7 @@ export default async function BlogPage(props: Props) {
           ))}
         </section>
       )}
+
     </main>
   );
 }

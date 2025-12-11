@@ -2,14 +2,14 @@ import { Suspense } from 'react';
 import connectDB from "@/database/db";
 import PortfolioModel from "@/database/portfolioSchema";
 import PortfolioEntry from '@/components/portfolioEntry';
+import Comment from "@/components/comments";
+import type { IComment } from "@/database/blogSchema";
 
 async function getPortfolioEntries(){
-  await connectDB() // function from db.ts before
+  await connectDB()
 
   try {
-      // query for all blogs and sort by date
-      const portfolio_entries = await PortfolioModel.find().sort({ date: -1 }).orFail()
-      // send a response as the blogs as the message
+      const portfolio_entries = await PortfolioModel.find().sort({ date: -1 }).lean().orFail()
       return portfolio_entries
   } catch (err) {
         console.error(err)
@@ -36,16 +36,25 @@ export default async function Portfolio() {
       <Suspense fallback={<Loading />}>
       <div>
         {portfolio_entries.map((pe) => 
+          <section key = {String(pe._id)}>
             <PortfolioEntry
-                key = {String(pe._id)}
-                _id = {String(pe._id)}
-                title = {pe.title}
-                date = {new Date(pe.date).toLocaleDateString()}
-                description = {pe.description}
-                image = {pe.image}
-                imageAlt = {pe.imageAlt}
-                slug = {pe.slug}
+              _id = {String(pe._id)}
+              title = {pe.title}
+              date = {new Date(pe.date).toLocaleDateString()}
+              description = {pe.description}
+              image = {pe.image}
+              imageAlt = {pe.imageAlt}
+              slug = {pe.slug}
             />
+
+            {pe.comments && pe.comments.length > 0 && (
+              <div>
+                {pe.comments.map((c: IComment, idx: number) => (
+                <Comment key={idx} comment={c} />
+                ))}
+              </div>
+            )}
+          </section>
         )}
       </div>
       </Suspense>

@@ -14,7 +14,7 @@ export async function GET(
     const blog = await Blog.findOne({ slug }).orFail();
     return NextResponse.json(blog);
   } catch (err) {
-    console.error("API ERROR:", err);
+    console.error("blog page error:", err);
     return NextResponse.json("Blog not found.", { status: 404 });
   }
 }
