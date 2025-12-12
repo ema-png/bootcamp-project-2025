@@ -3,6 +3,7 @@ import connectDB from "@/database/db";
 import PortfolioModel from "@/database/portfolioSchema";
 import PortfolioEntry from '@/components/portfolioEntry';
 import Comment from "@/components/comments";
+import CommentForm from '@/components/commentFormPortfolio';
 import type { IComment } from "@/database/blogSchema";
 
 async function getPortfolioEntries(){
@@ -54,6 +55,8 @@ export default async function Portfolio() {
                 ))}
               </div>
             )}
+
+            <CommentForm slug={pe.slug} />
           </section>
         )}
       </div>

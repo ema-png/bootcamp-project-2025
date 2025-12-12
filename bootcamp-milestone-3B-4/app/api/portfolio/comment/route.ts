@@ -6,14 +6,14 @@ import type { IComment } from "@/database/blogSchema";
 export async function POST(req: NextRequest) {
   await connectDB();
 
-  const {name, user, comment} = await req.json() as {
-    name? : string;
+  const {slug, user, comment} = await req.json() as {
+    slug? : string;
     user? : string;
     comment?: string;
   }
 
 
-  if (!name || !user || !comment) {
+  if (!slug || !user || !comment) {
     return NextResponse.json(
       { error: "name, user, comment required" },
       { status: 400 }
@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const updatedPortfolio = await Portfolio.findOneAndUpdate(
-      { name },
+      { slug },
       { $push: { comments: newComment } },
       { new: true }        
     ).orFail();
@@ -38,6 +38,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(updatedPortfolio);
   } catch (err) {
     console.error("comment error:", err);
-    return NextResponse.json("portfolio entry not found.", { status: 404 });
+    return NextResponse.json("portfolio not found.", { status: 404 });
   }
 }

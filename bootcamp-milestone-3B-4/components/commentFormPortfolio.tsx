@@ -13,10 +13,10 @@ export default function CommentForm({ slug }: { slug: string }) {
     e.preventDefault();
     setLoading(true);
 
-    const res = await fetch(`/api/blog/${slug}/comment`, {
+    const res = await fetch(`/api/portfolio/comment`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user, comment }),
+      body: JSON.stringify({ slug, user, comment }),
     });
 
     setLoading(false);
