@@ -1,46 +1,83 @@
+// app/blog/[slug]/page.tsx
+
 import BlogPageComponent from "@/components/blogPage";
 import Comment from "@/components/comments";
 import CommentForm from "@/components/commentForm";
 import type { IComment } from "@/database/blogSchema";
 
 type Props = {
-  params: { slug: string }; // no Promise needed
+  params: Promise<{ slug: string }>; // 👈 important: Promise
 };
 
 async function getBlog(slug: string) {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    const baseUrl =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000"
+        : process.env.NEXT_PUBLIC_SITE_URL;
 
-    console.log("getBlog using baseUrl:", baseUrl);
+    console.log("🌍 [getBlog] NODE_ENV:", process.env.NODE_ENV);
+    console.log("🌍 [getBlog] BASE URL:", baseUrl);
 
-    const res = await fetch(`${baseUrl}/api/blog/${slug}`, {
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      console.error("Failed to fetch blog:", res.status);
+    if (!baseUrl) {
+      console.error("❌ [getBlog] BASE URL is missing!");
       return null;
     }
 
-    return res.json();
+    const url = `${baseUrl}/api/blog/${slug}`;
+    console.log("📡 [getBlog] Fetching URL:", url);
+
+    const res = await fetch(url, {
+      cache: "no-store",
+    });
+
+    console.log("📡 [getBlog] Status:", res.status);
+
+    const text = await res.text();
+    console.log("📡 [getBlog] Raw body:", text);
+
+    if (!res.ok) {
+      console.error("❌ [getBlog] Failed:", res.status, text);
+      return null;
+    }
+
+    const blog = JSON.parse(text);
+    console.log("✅ [getBlog] Parsed blog:", {
+      title: blog.title,
+      slug: blog.slug,
+    });
+
+    return blog;
   } catch (err) {
-    console.error("GET BLOG ERROR:", err);
+    console.error("💥 [getBlog] ERROR:", err);
     return null;
   }
 }
 
 export default async function BlogPage({ params }: Props) {
-  const { slug } = params;
+  const { slug } = await params; // 👈 THIS is the key fix
+  console.log("🧩 [Page] Rendering for slug:", slug);
+
   const blog = await getBlog(slug);
 
   if (!blog) {
-    return <div>Blog not found</div>;
+    console.log("⚠️ [Page] No blog returned from getBlog");
+    return (
+      <main>
+        <h1>Blog not found</h1>
+      </main>
+    );
   }
+
+  console.log("✅ [Page] Got blog:", {
+    title: blog.title,
+    slug: blog.slug,
+  });
 
   return (
     <main>
       <BlogPageComponent
-        key={blog.key}
+        key={blog.key ?? blog._id ?? blog.slug}
         title={blog.title}
         date={new Date(blog.date).toLocaleDateString()}
         image={blog.image}
