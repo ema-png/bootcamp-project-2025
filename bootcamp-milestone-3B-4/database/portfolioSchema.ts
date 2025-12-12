@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { IComment } from "./blogSchema";
+import type { IComment } from "./blogSchema";
 
 // typescript type (can also be an interface)
 type PortfolioModel = {
