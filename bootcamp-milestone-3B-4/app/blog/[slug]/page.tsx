@@ -11,16 +11,24 @@ type Props = {
 
 async function getBlog(slug: string) {
   try {
-    const url =
+    const baseUrl =
       process.env.NODE_ENV === "development"
-        ? `http://localhost:3000/api/blog/${slug}` // dev: explicit localhost
-        : `/api/blog/${slug}`;                    // prod: internal route
+        ? "http://localhost:3000"
+        : `https://${process.env.VERCEL_URL}`;
 
+    console.log("🌍 [getBlog] NODE_ENV:", process.env.NODE_ENV);
+    console.log("🌍 [getBlog] BASE URL:", baseUrl);
+
+    const url = `${baseUrl}/api/blog/${slug}`;
     console.log("📡 [getBlog] Fetching URL:", url);
 
-    const res = await fetch(url, { cache: "no-store" });
-    const text = await res.text();
+    const res = await fetch(url, {
+      cache: "no-store",
+    });
+
     console.log("📡 [getBlog] Status:", res.status);
+
+    const text = await res.text();
     console.log("📡 [getBlog] Raw body:", text);
 
     if (!res.ok) {
@@ -34,6 +42,7 @@ async function getBlog(slug: string) {
     return null;
   }
 }
+
 
 
 export default async function BlogPage({ params }: Props) {
