@@ -1,3 +1,4 @@
+
 import { Suspense } from 'react';
 import connectDB from "@/database/db";
 import PortfolioModel from "@/database/portfolioSchema";
@@ -5,6 +6,8 @@ import PortfolioEntry from '@/components/portfolioEntry';
 import Comment from "@/components/comments";
 import CommentForm from '@/components/commentFormPortfolio';
 import type { IComment } from "@/database/blogSchema";
+
+export const dynamic = "force-dynamic";
 
 async function getPortfolioEntries(){
   await connectDB()
