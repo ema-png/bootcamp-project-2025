@@ -1,20 +1,16 @@
+// app/blog/[slug]/page.tsx
 import BlogPageComponent from "@/components/blogPage";
 import Comment from "@/components/comments";
 import CommentForm from "@/components/commentForm";
 import type { IComment } from "@/database/blogSchema";
 
 type Props = {
-  params: { slug: string }; // no Promise needed
+  params: { slug: string };
 };
 
 async function getBlog(slug: string) {
   try {
-    const base =
-      process.env.NEXT_PUBLIC_SITE_URL;
-
-    const res = await fetch(`${base}/api/blog/${slug}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(`/api/blog/${slug}`, { cache: "no-store" });
 
     if (!res.ok) {
       console.error("Failed to fetch blog:", res.status);
@@ -28,6 +24,8 @@ async function getBlog(slug: string) {
   }
 }
 
+
+
 export default async function BlogPage({ params }: Props) {
   const { slug } = params;
   const blog = await getBlog(slug);
@@ -39,12 +37,12 @@ export default async function BlogPage({ params }: Props) {
   return (
     <main>
       <BlogPageComponent
-        key={blog.key}
+        key={blog._id} // or blog.slug if you prefer
         title={blog.title}
         date={new Date(blog.date).toLocaleDateString()}
         image={blog.image}
         imageAlt={blog.imageAlt}
-        description={blog.content}
+        description={blog.content} // or blog.description depending on component
       />
 
       <CommentForm slug={slug} />
