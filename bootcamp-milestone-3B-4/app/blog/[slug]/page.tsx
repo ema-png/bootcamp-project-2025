@@ -19,7 +19,7 @@ async function getBlog(slug: string) {
 
     const base = getBaseUrl();
 
-    const res = await fetch(`${base}/api/blog/${slug}`, {
+    const res = await fetch(`/blog/${slug}`, {
       cache: "no-store",
     });
 

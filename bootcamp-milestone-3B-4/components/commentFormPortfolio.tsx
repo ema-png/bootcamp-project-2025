@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 import style from "./commentForm.module.css";
 
 export default function CommentForm({ slug }: { slug: string }) {
@@ -15,16 +15,7 @@ export default function CommentForm({ slug }: { slug: string }) {
     e.preventDefault();
     setLoading(true);
 
-    const getBaseUrl = () => {
-      if (process.env.VERCEL_URL) {
-        return `https://${process.env.VERCEL_URL}`;
-      }
-      return "http://localhost:3000";
-    };
-
-    const base = getBaseUrl();
-
-    const res = await fetch(`${base}/api/portfolio/comment`, {
+    const res = await fetch(`/api/portfolio/comment`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ slug, user, comment }),

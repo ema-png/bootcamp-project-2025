@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation"; 
-import style from './commentForm.module.css';
+import { useRouter } from "next/navigation";
+import style from "./commentForm.module.css";
 
 export default function CommentForm({ slug }: { slug: string }) {
-  const router = useRouter(); 
+  const router = useRouter();
 
   const [user, setUser] = useState("");
   const [comment, setComment] = useState("");
@@ -15,17 +15,7 @@ export default function CommentForm({ slug }: { slug: string }) {
     e.preventDefault();
     setLoading(true);
 
-    const getBaseUrl = () => {
-      if (process.env.VERCEL_URL) {
-        return `https://${process.env.VERCEL_URL}`;
-      }
-      return 'http://localhost:3000';
-    };
-
-    const base = getBaseUrl()
-
-
-    const res = await fetch(`${base}/api/blog/${slug}/comment`, {
+    const res = await fetch(`/api/blog/${slug}/comment`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ user, comment }),
@@ -38,14 +28,12 @@ export default function CommentForm({ slug }: { slug: string }) {
       return;
     }
 
-    router.refresh(); 
+    router.refresh(); // re-fetch page data (including comments)
   }
 
   return (
     <main className={style.commentform}>
-      <h3 className={style.header}>
-        𐙚.⋆ Leave a comment! ⋆❀˖°
-      </h3>
+      <h3 className={style.header}>𐙚.⋆ Leave a comment! ⋆❀˖°</h3>
       <form onSubmit={handleSubmit}>
         <input
           className={style.input}
@@ -72,3 +60,4 @@ export default function CommentForm({ slug }: { slug: string }) {
     </main>
   );
 }
+
