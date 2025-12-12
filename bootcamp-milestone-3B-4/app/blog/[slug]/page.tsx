@@ -11,6 +11,8 @@ async function getBlog(slug: string) {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
+    console.log("getBlog using baseUrl:", baseUrl);
+
     const res = await fetch(`${baseUrl}/api/blog/${slug}`, {
       cache: "no-store",
     });
