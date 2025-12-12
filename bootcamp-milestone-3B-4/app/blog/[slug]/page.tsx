@@ -9,7 +9,17 @@ type Props = {
 
 async function getBlog(slug: string) {
   try {
-    const res = await fetch(`http://localhost:3000/api/blog/${slug}`, {
+
+    const getBaseUrl = () => {
+      if (process.env.VERCEL_URL) {
+        return `https://${process.env.VERCEL_URL}`;
+      }
+      return 'http://localhost:3000';
+    };
+
+    const base = getBaseUrl();
+
+    const res = await fetch(`${base}/api/blog/${slug}`, {
       cache: "no-store",
     });
 
