@@ -4,6 +4,7 @@ import BlogPageComponent from "@/components/blogPage";
 import Comment from "@/components/comments";
 import CommentForm from "@/components/commentForm";
 import type { IComment } from "@/database/blogSchema";
+import { headers } from "next/headers";
 
 type Props = {
   params: Promise<{ slug: string }>; // 👈 important: Promise
@@ -11,39 +12,40 @@ type Props = {
 
 async function getBlog(slug: string) {
   try {
+    // ⬇️ IMPORTANT: await headers() because it's a Promise in your version
+    const incoming = await headers();
+
     const baseUrl =
       process.env.NODE_ENV === "development"
         ? "http://localhost:3000"
         : `https://${process.env.VERCEL_URL}`;
 
-    console.log("🌍 [getBlog] NODE_ENV:", process.env.NODE_ENV);
-    console.log("🌍 [getBlog] BASE URL:", baseUrl);
-
     const url = `${baseUrl}/api/blog/${slug}`;
-    console.log("📡 [getBlog] Fetching URL:", url);
+    console.log("📡 Fetching:", url);
 
     const res = await fetch(url, {
       cache: "no-store",
+      headers:
+        process.env.NODE_ENV === "production"
+          ? {
+              cookie: incoming.get("cookie") || "",
+            }
+          : undefined,
     });
 
-    console.log("📡 [getBlog] Status:", res.status);
-
     const text = await res.text();
-    console.log("📡 [getBlog] Raw body:", text);
 
     if (!res.ok) {
-      console.error("❌ [getBlog] Failed:", res.status, text);
+      console.error("❌ Fetch failed:", res.status, text);
       return null;
     }
 
     return JSON.parse(text);
   } catch (err) {
-    console.error("💥 [getBlog] ERROR:", err);
+    console.error("💥 getBlog ERROR:", err);
     return null;
   }
 }
-
-
 
 export default async function BlogPage({ params }: Props) {
   const { slug } = await params; // 👈 THIS is the key fix
