@@ -30,6 +30,7 @@ body {
 
 .sub_title{
     font-family: 'Courier New', Courier, monospace;
+    color: rgb(96, 170, 208);
 }
 
 /*home page styling*/
@@ -92,6 +93,29 @@ body {
   transform: scale(7);
   color: rgb(255, 114, 227);
   
+}
+
+/*portfolio entries comment box styling*/
+.portfolioCommentBox{
+  display: flex;
+  align-items: stretch;
+}
+
+.portfolioComments{
+    flex: 1;
+    margin: 50px;
+    padding: 20px;
+    
+    border-width: 10px;
+    border-radius: 25px;
+    border-style: solid;
+    border-color: rgb(209, 207, 255);
+    background-color: rgb(241, 236, 255);
+
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: top;
 }
 
 /*comment box styling*/

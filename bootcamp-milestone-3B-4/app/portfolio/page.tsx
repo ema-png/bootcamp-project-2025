@@ -48,15 +48,21 @@ export default async function Portfolio() {
               slug = {pe.slug}
             />
 
-            {pe.comments && pe.comments.length > 0 && (
-              <div>
-                {pe.comments.map((c: IComment, idx: number) => (
-                <Comment key={idx} comment={c} />
-                ))}
-              </div>
-            )}
+            <section className = "portfolioCommentBox">
 
-            <CommentForm slug={pe.slug} />
+              <CommentForm slug={pe.slug} />
+
+              <section className = "portfolioComments">
+                {pe.comments && pe.comments.length > 0 && (
+                  <div>
+                    {pe.comments.map((c: IComment, idx: number) => (
+                    <Comment key={idx} comment={c} />
+                    ))}
+                  </div>
+                )}
+              </section>
+            </section>
+            <br></br>      
           </section>
         )}
       </div>
