@@ -1,30 +1,24 @@
-import BlogPageComponent from "@/components/blogPage"
+import BlogPageComponent from "@/components/blogPage";
 import Comment from "@/components/comments";
 import CommentForm from "@/components/commentForm";
 import type { IComment } from "@/database/blogSchema";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: { slug: string }; // no Promise needed
 };
 
 async function getBlog(slug: string) {
   try {
+    const base =
+      process.env.NEXT_PUBLIC_SITE_URL;
 
-    const getBaseUrl = () => {
-      if (process.env.VERCEL_URL) {
-        return `https://${process.env.VERCEL_URL}`;
-      }
-      return 'http://localhost:3000';
-    };
-
-    const base = getBaseUrl();
-
-    const res = await fetch(`/blog/${slug}`, {
+    const res = await fetch(`${base}/api/blog/${slug}`, {
       cache: "no-store",
     });
 
     if (!res.ok) {
-      throw new Error("Failed to fetch blog");
+      console.error("Failed to fetch blog:", res.status);
+      return null;
     }
 
     return res.json();
@@ -34,9 +28,8 @@ async function getBlog(slug: string) {
   }
 }
 
-export default async function BlogPage(props: Props) {
-  
-  const { slug } = await props.params;
+export default async function BlogPage({ params }: Props) {
+  const { slug } = params;
   const blog = await getBlog(slug);
 
   if (!blog) {
@@ -54,17 +47,16 @@ export default async function BlogPage(props: Props) {
         description={blog.content}
       />
 
-      <CommentForm slug = {slug}/>
+      <CommentForm slug={slug} />
 
       {blog.comments && blog.comments.length > 0 && (
-        <section className = "commentbox">
-          <h3 className = "commenttitle">Comments</h3>
+        <section className="commentbox">
+          <h3 className="commenttitle">Comments</h3>
           {blog.comments.map((comment: IComment, index: number) => (
             <Comment key={index} comment={comment} />
           ))}
         </section>
       )}
-
     </main>
   );
 }
