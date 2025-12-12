@@ -3,23 +3,18 @@ import connectDB from "@/database/db";
 import Blog from "@/database/blogSchema";
 
 export async function GET(
-  _req: NextRequest,
-  { params }: { params: { slug: string } }
+  req: NextRequest,
+  context: { params: Promise<{ slug: string }> }
 ) {
   await connectDB();
 
-  const { slug } = params;
+  const { slug } = await context.params;
 
   try {
     const blog = await Blog.findOne({ slug }).orFail();
-
-    return NextResponse.json(blog, { status: 200 });
+    return NextResponse.json(blog);
   } catch (err) {
     console.error("blog page error:", err);
-    return NextResponse.json(
-      { message: "Blog not found." },
-      { status: 404 }
-    );
+    return NextResponse.json("Blog not found.", { status: 404 });
   }
 }
-
