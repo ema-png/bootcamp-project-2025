@@ -1,3 +1,5 @@
+"use client";
+
 import { IComment } from "@/database/blogSchema"
 import style from './comments.module.css'
 
