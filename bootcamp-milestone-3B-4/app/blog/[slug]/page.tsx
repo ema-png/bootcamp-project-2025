@@ -11,29 +11,16 @@ type Props = {
 
 async function getBlog(slug: string) {
   try {
-    const baseUrl =
+    const url =
       process.env.NODE_ENV === "development"
-        ? "http://localhost:3000"
-        : process.env.NEXT_PUBLIC_SITE_URL;
+        ? `http://localhost:3000/api/blog/${slug}` // dev: explicit localhost
+        : `/api/blog/${slug}`;                    // prod: internal route
 
-    console.log("🌍 [getBlog] NODE_ENV:", process.env.NODE_ENV);
-    console.log("🌍 [getBlog] BASE URL:", baseUrl);
-
-    if (!baseUrl) {
-      console.error("❌ [getBlog] BASE URL is missing!");
-      return null;
-    }
-
-    const url = `${baseUrl}/api/blog/${slug}`;
     console.log("📡 [getBlog] Fetching URL:", url);
 
-    const res = await fetch(url, {
-      cache: "no-store",
-    });
-
-    console.log("📡 [getBlog] Status:", res.status);
-
+    const res = await fetch(url, { cache: "no-store" });
     const text = await res.text();
+    console.log("📡 [getBlog] Status:", res.status);
     console.log("📡 [getBlog] Raw body:", text);
 
     if (!res.ok) {
@@ -41,18 +28,13 @@ async function getBlog(slug: string) {
       return null;
     }
 
-    const blog = JSON.parse(text);
-    console.log("✅ [getBlog] Parsed blog:", {
-      title: blog.title,
-      slug: blog.slug,
-    });
-
-    return blog;
+    return JSON.parse(text);
   } catch (err) {
     console.error("💥 [getBlog] ERROR:", err);
     return null;
   }
 }
+
 
 export default async function BlogPage({ params }: Props) {
   const { slug } = await params; // 👈 THIS is the key fix
